@@ -1,0 +1,16 @@
+services:
+    openresty:
+        image: jiho4/openresty:latest
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        hostname: openresty
+        container_name: openresty
+        ports:
+            - "80:80"
+        env_file:
+            - ./env/configs.env
+        volumes:
+            - ./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+            - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./nginx/lua-scripts:/etc/nginx/lua
